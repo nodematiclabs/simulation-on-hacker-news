@@ -33,7 +33,7 @@ resource "aws_kinesis_firehose_delivery_stream" "on_hacker_news" {
   s3_configuration {
     role_arn        = aws_iam_role.on_hacker_news_firehose.arn
     bucket_arn      = aws_s3_bucket.on_hacker_news.arn
-    prefix          = "intermediate"
+    prefix          = "intermediate/"
     buffer_size     = 1
     buffer_interval = 60
 
@@ -56,7 +56,7 @@ resource "aws_kinesis_firehose_delivery_stream" "on_hacker_news" {
     s3_backup_configuration {
       role_arn        = aws_iam_role.on_hacker_news_firehose.arn
       bucket_arn      = aws_s3_bucket.on_hacker_news.arn
-      prefix          = "backup"
+      prefix          = "backup/"
       buffer_size     = 1
       buffer_interval = 60
     }

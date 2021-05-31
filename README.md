@@ -64,6 +64,7 @@ Create a new Retool app, and in that app:
     1. Use the endpoint, username, and password from terraform provisioning
     1. Note that the host field should not have the `:5439` port specification
     1. Connect using SSL
+1. Create a date range picker component and name it `dates`
 1. Create a single query called `on_hacker_news`
     ```
     SELECT   trunc(timestamp 'epoch' + extraction_datetime * interval '1 second') AS extraction_date,
@@ -84,6 +85,7 @@ Create a new Retool app, and in that app:
                     ELSE 'Very Positive'
             END) AS compound_sentiment_category
     FROM     on_hacker_news
+    WHERE extraction_date >= {{dates.startValue}} AND extraction_date <= {{dates.endValue}}
     ORDER BY compound_sentiment_index;
     ```
 1. Create a Chart (plotly) component, and use [`data-visualization/plotly.json`](data-visualization/plotly.json) for the configuration

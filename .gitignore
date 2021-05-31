@@ -1,0 +1,10 @@
+# Local .terraform directories
+**/.terraform/*
+
+# Terrform state files
+*.tfstate
+*.tfstate.*
+*.terraform.lock.hcl
+
+# Virtual environment
+venv/

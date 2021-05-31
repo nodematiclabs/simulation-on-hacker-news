@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Count",
+    "x": {{on_hacker_news.data['extraction_date']}},
+    "y": {{on_hacker_news.data.count}},
+    "type": "scatter",
+    "fill": "tonexty",
+    "stackgroup": "one",
+    "hovertemplate": "",
+    "transforms": [
+      {
+        "type": "groupby",
+        "groups": {{on_hacker_news.data['compound_sentiment_category']}},
+        "styles": [
+          {target: 'Very Negative', value: {marker: {color: 'red'}}},
+          {target: 'Negative', value: {marker: {color: 'orange'}}},
+          {target: 'Neutral', value: {marker: {color: 'gold'}}},
+          {target: 'Positive', value: {marker: {color: 'yellowgreen'}}},
+          {target: 'Very Positive', value: {marker: {color: 'green'}}},
+        ],
+      },
+      {
+        "type": "sort",
+        "target": {{on_hacker_news.data['extraction_date']}},
+        "order": "ascending"
+      },
+      {
+        "type": "aggregate",
+        "groups": {{on_hacker_news.data['extraction_date']}},
+        "aggregations": [
+          {
+            "target": "y",
+            "func": "avg",
+            "enabled": true
+          }
+        ]
+      }
+    ],
+    "marker": {},
+    "mode": "lines+markers"
+  }
+]
